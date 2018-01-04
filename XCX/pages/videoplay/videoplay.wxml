@@ -1,0 +1,27 @@
+<import src="../../template/comment.wxml" />
+<import src="../../template/pl.wxml" />
+<wxs src="../../util/formatTime.wxs" module="formatTime" />
+
+<view class="play">
+  <video id="video" class="video" src="{{searchGid.extend3}}" bindplay="bindplay"></video>
+</view>
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" bindscrolltolower="lower" lower-threshold="5" class="main">
+  <view class="body">
+    <view class="title strong">
+      {{searchGid.name}}
+      <view class="fwl">
+        <image src="/image/rmb.png"></image> {{searchGid.price ==0?"免费":searchGid.price+"元"+ searchGid.extend4 + "次"}}
+      </view>
+    </view>
+    <view>
+      <text class="author">讲师:{{searchGid.extend1}}</text>
+      <text class="addtime">{{formatTime.dateFtt(searchGid.add_time)}}</text>
+    </view>
+    <view class="subtitle">
+      {{searchGid.subtitle}}
+    </view>
+  </view>
+  <image src="{{url}}{{searchGid.graphic_details}}" class='autoimage'></image>
+  <template is="comment" data="{{list,searchLoadingText,searchLoading}}" />
+</scroll-view>
+<template is="pl" data="{{plhide,focus}}" />

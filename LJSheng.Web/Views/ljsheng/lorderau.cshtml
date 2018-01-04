@@ -1,0 +1,117 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>操作</title>
+    <link href="~/plugins/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body style="margin-left:10px;margin-top:10px;">
+    @using (Html.BeginForm("lorderau", "ljsheng", new { gid = Request.QueryString["gid"] }, FormMethod.Post, new { @class = "layui-form layui-form-pane", enctype = "multipart/form-data" }))
+    {
+        <div class="layui-form-item">
+            <label class="layui-form-label">下单用户</label>
+            <div class="layui-input-inline">
+                @ViewBag.member
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">购买商品</label>
+            <div class="layui-input-inline">
+                @ViewBag.product
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">系统订单号</label>
+            <div class="layui-input-inline">
+                @ViewBag.order_no
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">支付订单号</label>
+            <div class="layui-input-inline">
+                @ViewBag.trade_no
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">支付金额</label>
+            <div class="layui-input-inline">
+                @ViewBag.pay_price
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">快递公司</label>
+            <div class="layui-input-block">
+                <select name="express">
+                    @foreach (var item in Model)
+                    {
+                        if (@item.type == ViewBag.express)
+                        {
+                            <option value="@item.type" selected="">@item.name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.type">@item.name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">快递号</label>
+            <div class="layui-input-block">
+                <input type="text" name="express_number" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="@ViewBag.express_number">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">收货人</label>
+            <div class="layui-input-block">
+                <input type="text" name="consignee" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="@ViewBag.consignee">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">联系方式</label>
+            <div class="layui-input-block">
+                <input type="text" name="contact_number" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="@ViewBag.contact_number">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">地址</label>
+            <div class="layui-input-block">
+                <input type="text" name="address" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="@ViewBag.address">
+            </div>
+        </div>
+        <div class="layui-form-item" pane="">
+            <label class="layui-form-label">订单状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="express_status" value="1" title="发货中" @(ViewBag.express_status == 1 ? "checked=\"\"" : "")>
+                <input type="radio" name="express_status" value="2" title="快递中" @(ViewBag.express_status == 2 ? "checked=\"\"" : "")>
+                <input type="radio" name="express_status" value="3" title="已签收" @(ViewBag.express_status == 3 ? "checked=\"\"" : "")>
+                <input type="radio" name="express_status" value="4" title="退回" @(ViewBag.express_status == 4 ? "checked=\"\"" : "")>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <textarea type="text" id="remarks" name="remarks" autocomplete="off" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" lay-submit="" onclick="return ck();">提交</button>
+        </div>
+    }
+    <script src="~/js/jquery.js"></script>
+    <script src="~/plugins/layui/layui.js"></script>
+    <script>
+        $("#remarks").text("@ViewBag.remarks");
+        layui.use(['form'], function () {
+            var form = layui.form();
+        });
+    </script>
+</body>
+</html>

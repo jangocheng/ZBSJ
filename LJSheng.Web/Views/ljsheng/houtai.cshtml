@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>后台管理</title>
+</head>
+<frameset cols="*" rows="50, *" id="frame_main" border="0">
+    <frame src="/ljsheng/toubu" noresize="noresize" name="header">
+        <frameset cols="181, *">
+            <frame src="/ljsheng/caidan" name="left" noresize="noresize" />
+            <frameset rows="31,*" border="0">
+                <frame src="title" name="title" noresize="noresize">
+                <frame src="/ljsheng/index" name="list" noresize="noresize">
+            </frameset>
+        </frameset>
+</frameset>
+<noframes>
+    <body>
+    </body>
+</noframes>
+</html>

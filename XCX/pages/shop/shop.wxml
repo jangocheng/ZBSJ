@@ -1,0 +1,31 @@
+<import src="../../template/search.wxml" />
+
+<view class="main">
+<template is="search" />
+  <view class="left">
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+      <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">课程</view>
+      <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">树苗</view>
+      <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">小品</view>
+      <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">盆景</view>
+      <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">精品</view>
+    </scroll-view>
+  </view>
+  <view class="right">
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab">
+      <swiper-item wx:for="{{list}}" wx:key="*this">
+        <scroll-view scroll-y="true" class="scoll-h">
+          <block wx:for="{{item.list}}" wx:key="*this">
+            <view class="li">
+              <navigator url="/pages/shoppage/shoppage?gid={{item.gid}}&tab={{currentTab}}">
+                <image src="{{url}}{{item.picture}}" class="image" />
+                <view class="text">{{item.name}}</view>
+                <view class="rmb"><image src="/image/rmb.png" />{{item.price}}</view>
+              </navigator>
+            </view>
+          </block>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

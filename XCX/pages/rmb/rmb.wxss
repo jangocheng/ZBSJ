@@ -1,0 +1,37 @@
+page {
+  background-color: #ebebeb;
+}
+
+.li {
+  margin: 0 auto;
+  margin-top: 30rpx;
+  padding: 20rpx;
+  background-color: white;
+  height: auto;
+  width: 90%;
+}
+
+.title {
+  color: black;
+  font-size: 30rpx;
+  padding-top: 10rpx;
+}
+
+.time {
+  color: #b3b3b3;
+  font-size: 25rpx;
+}
+
+.pay {
+  color: #b3b3b3;
+  font-size: 30rpx;
+}
+
+.li image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.rmb {
+  font-size: 58rpx;
+}

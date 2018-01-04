@@ -1,0 +1,9 @@
+<template name="pl">
+  <view class="pl" hidden="{{!plhide}}">
+    <form bindsubmit="formBindsubmit">
+      <textarea name="content" focus="{{focus}}" />
+      <button bindtap='qxpl'>取消</button>
+      <button type='primary' formType="submit">提交评论</button>
+    </form>
+  </view>
+</template>

@@ -1,0 +1,111 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/js/jquery.js"></script>
+    <link href="~/css/ljsheng/global.css" rel="stylesheet" />
+    <title>菜单</title>
+    <style type="text/css">
+        html {
+            height: 100%
+        }
+
+        body {
+            height: 100%;
+            background: #576a85
+        }
+    </style>
+</head>
+<body>
+    <div class="menu" id="menu" runat="server">
+        <h2 style="display:@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"":"none");">系统管理</h2>
+        <ul>
+            <li><a href="/ljsheng/commentlist" target="list">评论管理</a></li>
+            <li><a href="/dbbak.aspx?db=ZBSJ" target="list">数据库备份</a></li>
+            <li><a href="https://mpkf.weixin.qq.com/cgi-bin/kfloginpage" target="_blank">微信客服</a></li>
+        </ul>
+
+        <h2 style="display:@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"":"none");">管理员管理</h2>
+        <ul>
+            <li><a href="/ljsheng/ljshenglist" target="list">管理员列表</a></li>
+            <li><a href="/ljsheng/ljshengau" target="list">管理员添加</a></li>
+        </ul>
+
+        <h2>会员管理</h2>
+        <ul>
+            <li><a href="/ljsheng/memberlist" target="list">会员管理</a></li>
+        </ul>
+
+        <h2 style="display:@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"":"none");">商家分类</h2>
+        <ul>
+            <li><a href="/ljsheng/classifylist" target="list">分类管理</a></li>
+            <li><a href="/ljsheng/classifyau" target="list">分类添加</a></li>
+        </ul>
+        <h2>新闻资讯</h2>
+        <ul>
+            <li><a href="/ljsheng/newslist" target="list">资讯管理</a></li>
+            <li><a href="/ljsheng/newsau" target="list">资讯添加</a></li>
+        </ul>
+
+        <h2 style="display:@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"":"none");">商家分类</h2>
+        <ul>
+            <li><a href="/ljsheng/classifylist" target="list">分类管理</a></li>
+            <li><a href="/ljsheng/classifyau" target="list">分类添加</a></li>
+        </ul>
+        <h2 style="display:@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"":"none");">课程管理</h2>
+        <ul>
+            <li><a href="/ljsheng/productlist?ltype=3" target="list">课程管理</a></li>
+            <li><a href="/ljsheng/productau?ltype=3" target="list">课程添加</a></li>
+        </ul>
+
+        <h2 style="display:@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"":"none");">视频管理</h2>
+        <ul>
+            <li><a href="/ljsheng/productlist?ltype=2" target="list">视频管理</a></li>
+            <li><a href="/ljsheng/productau?ltype=2" target="list">视频添加</a></li>
+            <li><a href="/ljsheng/productau?ltype=2&gid=9c384f81-701a-44aa-84a5-bec520180ef7&lx=0" target="list">视频套餐</a></li>
+            <li><a href="/ljsheng/productau?ltype=2&gid=5b0f761a-73cf-4c36-a713-4d435187e513&lx=0" target="list">VIP套餐</a></li>
+        </ul>
+
+        <h2 style="display:@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"":"none");">真柏管理</h2>
+        <ul>
+            <li><a href="/ljsheng/productlist?ltype=1" target="list">真柏管理</a></li>
+            <li><a href="/ljsheng/productau?ltype=1" target="list">真柏添加</a></li>
+        </ul>
+
+        <h2 style="display:@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"":"none");">财务管理</h2>
+        <ul>
+            <li><a href="/ljsheng/lorderlist?ltype=0" target="list">订单管理</a></li>
+            <li><a href="/ljsheng/lorderlist?ltype=2" target="list">视频订单</a></li>
+            <li><a href="/ljsheng/lorderlist?ltype=3" target="list">课程订单</a></li>
+            <li><a href="/ljsheng/lorderlist?ltype=1" target="list">真柏订单</a></li>
+            <li><a href="/ljsheng/baobiao" target="list">总报表</a></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+    $(".menu h2").click(function () {
+        $(this).next("ul").slideToggle(300).siblings("ul").slideUp(400);
+        $(this).addClass("hover").siblings().removeClass("hover");
+    })
+    var oa = document.getElementById("menu").getElementsByTagName("a");
+    for (i = 0; i < oa.length; i++) {
+        oa[i].onclick = function () {
+            var tit = self.parent.frames["title"].document.getElementsByTagName('div')[0].getElementsByTagName('label')[0];
+            tit.innerHTML = this.innerHTML;
+            for (i = 0; i < oa.length; i++) {
+                oa[i].className = '';
+            }
+            this.className = "cur";
+        }
+        oa[i].onfocus = function () {
+            this.blur();
+        }
+    }
+    </script>
+</body>
+</html>

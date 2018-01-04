@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+
+ .SelALLDiv{ border:1px solid #666; width:600px;position:absolute;  background:#FFF}
+ .arearbar{ background:url(../images/arearbg.png) no-repeat; padding:6px 20px ;color:#FFF; font-size:14px; font-weight:700;} 
+ 
+ 
+ .selValDiv,.selShengDiv,.selShiDiv{ height:auto; float:left; width:100%}
+ 
+ .divshihasselect,.divsheng,.divshi{ padding:10px; clear:both; display:block}
+ .divshihasselect .spanshihasselect,.divsheng .spansheng ,.divshi .spanshi { display:block; width:116px; line-height:24px; vertical-align:middle  ; text-align:center; float:left;cursor:pointer} 
+ .goback{text-decoration:underline; color:#00F; font-size:12px; margin:0 0 0 10px;cursor:pointer}
+ 
+ 
+ 
+ 
+ .inputse{ width:100%;  clear:both; text-align:center; padding:10px 0 10px 0}

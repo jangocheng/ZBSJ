@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>分类操作</title>
+    <link href="~/plugins/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body style="margin-left:10px;margin-top:10px;">
+    @using (Html.BeginForm("classifyau", "ljsheng", new { gid = Request.QueryString["gid"] }, FormMethod.Post, new { @class = "layui-form layui-form-pane", enctype = "multipart/form-data" }))
+    {
+        <div class="layui-form-item">
+            <label class="layui-form-label">分类名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" lay-verify="account" placeholder="请输入" autocomplete="off" class="layui-input" value="@ViewBag.name">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">排序</label>
+            <div class="layui-input-inline">
+                <input type="text" name="sort" lay-verify="num" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'');" value="@ViewBag.sort">
+            </div>
+            <div class="layui-form-mid layui-word-aux">数字越大显示越前面</div>
+        </div>
+        <div class="layui-form-item" pane="">
+            <label class="layui-form-label">是否显示</label>
+            <div class="layui-input-block">
+                <input type="radio" name="show" value="1" title="显示" @(ViewBag.show != 2 ? "checked=\"\"" : "")>
+                <input type="radio" name="show" value="2" title="不显示" @(ViewBag.show == 2 ? "checked=\"\"" : "")>
+            </div>
+        </div>
+        <div class="layui-form-item" pane="">
+            <label class="layui-form-label">分类属性</label>
+            <div class="layui-input-block">
+                <input type="radio" name="ltype" value="1" title="产品" @(ViewBag.ltype != 2 ? "checked=\"\"" : "")>
+                <input type="radio" name="ltype" value="2" title="视频" @(ViewBag.ltype == 2 ? "checked=\"\"" : "")>
+                <input type="radio" name="ltype" value="3" title="课程" @(ViewBag.ltype == 3 ? "checked=\"\"" : "")>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" lay-submit="">提交</button>
+        </div>
+    }
+    <script src="~/plugins/layui/layui.js"></script>
+    <script>
+        layui.use(['form'], function () {
+            var form = layui.form();
+            form.verify({
+                account: function (value) {
+                    if (value.length < 2) {
+                        return '至少得2个字符啊';
+                    }
+                }
+                , num: function (value) {
+                    if (value.length < 1) {
+                        return '至少得1个字符啊';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

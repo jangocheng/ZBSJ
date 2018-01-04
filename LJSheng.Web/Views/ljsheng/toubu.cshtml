@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/ljsheng/global.css" rel="stylesheet" />
+    <title>后台头部</title>
+</head>
+<body>
+    <div class="head">
+        <div class="hcon">
+            <p>
+                <a target="list" href="/ljsheng/memberlist">会员总数<br /><em id="member"></em></a>
+                <a target="list" href="@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"/ljsheng/lorderlist?ltype=0":"#")">订单总数<br /><em id="order"></em></a>
+                <a target="list" href="@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"/ljsheng/lorderlist?ltype=2":"#")">视频订单<br /><em id="video"></em></a>
+                <a target="list" href="@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"/ljsheng/lorderlist?ltype=1":"#")">真柏订单<br /><em id="zhenbo"></em></a>
+                <a target="list" href="@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"/ljsheng/lorderlist?ltype=3":"#")">课程订单<br /><em id="kecheng"></em></a>
+                <a target="list" href="@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")=="管理员"?"/ljsheng/lorderlist?ltype=1&express_status=1":"#")">需要发货<br /><em id="express"></em></a>
+            </p>
+            <tt><a href="/ljsheng/index" target="list">后台首页</a>|<a href="#" target="_blank">前台首页</a>|<a href="/logout.aspx?lx=0" target="_top">您好,@(LJSheng.Common.LCookie.Getljsheng("jurisdiction")) 安全退出</a></tt>
+        </div>
+    </div>
+    <audio id="audio-notification"><source src="/images/msg.mp3" type="audio/mpeg" /></audio>
+    <script src="~/js/jquery.js"></script>
+    <script>
+        function GetTB() {
+            $.ajax({
+                type: "post",
+                url: "/ljsheng/tb",
+                data: "",
+                cache: false,
+                dataType: "json",
+                timeout: 5000,
+                //出错处理
+                error: function () {
+                    $("#msg").html("请刷新页面");
+                },
+                beforeSend: function () { },
+                success: function (data) {
+                    if (data.result == 200) {
+                        if (data.data.express != 0) {
+                            $("#msg").addClass("msg");
+                            $("#audio-notification").get(0).play();//播放提示音
+                        }
+                        $("#member").html(data.data.member);
+                        $("#order").html(data.data.order);
+                        $("#kecheng").html(data.data.kecheng);
+                        $("#video").html(data.data.video);
+                        $("#zhenbo").html(data.data.zhenbo);
+                        $("#express").html(data.data.express);
+                    }
+                    else {
+                        $("#member").html("0");
+                        $("#order").html("0");
+                        $("#kecheng").html("0");
+                        $("#video").html("0");
+                        $("#zhenbo").html("0");
+                        $("#express").html("0");
+                    }
+                }
+            });
+            setTimeout(function () { GetTB(); }, 198888);
+        }
+        setTimeout(function () { GetTB(); }, 100);
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/member/member",
+    "pages/shop/shop",
+    "pages/video/video",
+    "pages/videoplay/videoplay",
+    "pages/news/news",
+    "pages/newspage/newspage",
+    "pages/shoppage/shoppage",
+    "pages/buy/buy",
+    "pages/rmb/rmb",
+    "pages/kecheng/kecheng",
+    "pages/shipin/shipin",
+    "pages/zhenbo/zhenbo"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "真柏世界",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#003D79",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/home.png",
+        "selectedIconPath": "image/homes.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "iconPath": "image/video.png",
+        "selectedIconPath": "image/videos.png",
+        "text": "视频"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "iconPath": "image/shop.png",
+        "selectedIconPath": "image/shops.png",
+        "text": "商城"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "iconPath": "image/news.png",
+        "selectedIconPath": "image/newss.png",
+        "text": "资讯"
+      },
+      {
+        "pagePath": "pages/member/member",
+        "iconPath": "image/member.png",
+        "selectedIconPath": "image/members.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

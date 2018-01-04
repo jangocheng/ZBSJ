@@ -1,0 +1,219 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>商家操作</title>
+    <link href="~/plugins/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body style="margin-left:10px;margin-top:10px;">
+    @using (Html.BeginForm("productau", "ljsheng", new { gid = Request.QueryString["gid"] }, FormMethod.Post, new { @class = "layui-form layui-form-pane", enctype = "multipart/form-data" }))
+    {
+        <div class="layui-form-item @(Request.QueryString["ltype"]!="1"?"layui-hide":"")">
+            <label class="layui-form-label">分类</label>
+            <div class="layui-input-inline">
+                <select name="classify_gid">
+                    @foreach (var item in Model)
+                    {
+                        if (!string.IsNullOrEmpty(Request.QueryString["classify_gid"]) && @item.gid == Guid.Parse(Request.QueryString["classify_gid"]))
+                        {
+                            <option value="@item.gid" selected="">@item.name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.gid">@item.name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="@ViewBag.name">
+            </div>
+        </div>
+        <div class="layui-form-item @(Request.QueryString["lx"]=="0"?"layui-hide":"")">
+            <label class="layui-form-label">图片</label>
+            <div class="layui-input-block">
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="picturebt">上传图片</button>
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" id="picture" src="@(LJShengHelper.Product + ViewBag.picture)">
+                        <p id="pictureText">图片大小不能超过200KB</p>
+                        <input type="text" name="picture" hidden>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item @(Request.QueryString["lx"]=="0"?"layui-hide":"")">
+            <label class="layui-form-label">图文详情</label>
+            <div class="layui-input-block">
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="gdbt">上传图片</button>
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" id="gd" src="@(LJShengHelper.Product + ViewBag.graphic_details)">
+                        <p id="gdText">图片大小不能超过500KB</p>
+                        <input type="text" name="graphic_details" hidden>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">原价</label>
+                <div class="layui-input-inline" style="width: 80px;">
+                    <input type="text" name="price" lay-verify="required" placeholder="原价" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'');" value="@ViewBag.price">
+                </div>
+                <div class="layui-form-mid">售价</div>
+                <div class="layui-input-inline" style="width: 80px;">
+                    <input type="text" name="original_price" lay-verify="required" placeholder="售价" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'');" value="@ViewBag.original_price">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item @(Request.QueryString["ltype"]=="1"?"layui-hide":"") @(Request.QueryString["lx"]=="0"?"layui-hide":"")">
+            <label class="layui-form-label">@ViewBag.title1</label>
+            <div class="layui-input-block">
+                <input type="text" name="extend1" placeholder="请输入" autocomplete="off" class="layui-input" value="@ViewBag.extend1">
+            </div>
+        </div>
+        <div class="layui-form-item @(Request.QueryString["ltype"]=="1"?"layui-hide":"") @(Request.QueryString["lx"]=="0"?"layui-hide":"")">
+            <label class="layui-form-label">@ViewBag.title2</label>
+            <div class="layui-input-block">
+                <input type="text" name="extend2" placeholder="请输入" autocomplete="off" class="layui-input" value="@ViewBag.extend2">
+            </div>
+        </div>
+        <div class="layui-form-item @(Request.QueryString["ltype"]=="1"?"layui-hide":"") @(Request.QueryString["lx"]=="0"?"layui-hide":"")">
+            <label class="layui-form-label">@ViewBag.title3</label>
+            <div class="layui-input-block">
+                <input type="text" name="extend3" placeholder="请输入" autocomplete="off" class="layui-input" value="@ViewBag.extend3">
+            </div>
+        </div>
+        <div class="layui-form-item @(Request.QueryString["ltype"]!="2"?"layui-hide":"")">
+            <label class="layui-form-label">@ViewBag.title4</label>
+            <div class="layui-input-block">
+                <input type="text" name="extend4" placeholder="请输入" lay-verify="required" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'');" value="@ViewBag.extend4">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">简介</label>
+            <div class="layui-input-block">
+                <textarea type="text" id="subtitle" name="subtitle" autocomplete="off" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-hide">
+            <label class="layui-form-label">详情介绍</label>
+            <div class="layui-input-block">
+                <textarea type="text" id="content" name="content" autocomplete="off" class="layui-textarea"></textarea>
+            </div>
+            <div id="htm" class="layui-hide">@Html.Raw(ViewBag.content)</div>
+        </div>
+        <div class="layui-form-item @(Request.QueryString["lx"]=="0"?"layui-hide":"")">
+            <label class="layui-form-label">排序</label>
+            <div class="layui-input-inline">
+                <input type="text" name="sort" lay-verify="required" autocomplete="off" class="layui-input" onkeyup="value=value.replace(/[^\d]/g,'');" value="@ViewBag.sort">
+            </div>
+            <div class="layui-form-mid layui-word-aux">数字越大显示越前面</div>
+        </div>
+        <div class="layui-form-item @(Request.QueryString["lx"]=="0"?"layui-hide":"")" pane="">
+            <label class="layui-form-label">是否显示</label>
+            <div class="layui-input-block">
+                <input type="radio" name="show" value="1" title="显示" @(ViewBag.show != 2 ? "checked=\"\"" : "")>
+                <input type="radio" name="show" value="2" title="不显示" @(ViewBag.show == 2 ? "checked=\"\"" : "")>
+                <input type="radio" name="show" value="3" title="首页推荐" @(ViewBag.show == 3 ? "checked=\"\"" : "")>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn" lay-submit="" onclick="return ck();">提交</button>
+        </div>
+    }
+    <script src="~/js/jquery.js"></script>
+    <script src="~/plugins/layui/layui.js"></script>
+    <script>
+        $("#content").html($("#htm").html());
+        $("#subtitle").text("@ViewBag.subtitle");
+        layui.use(['form', 'layedit'], function () {
+            var layedit = layui.layedit;
+            //构建一个默认的编辑器
+            layedit.set({
+                uploadImage: {
+                    url: '/ljsheng/uploadpicture?path=/uploadfiles/bjq/' //接口url
+                    , type: 'post' //默认post
+                }
+            });
+            var content = layedit.build('content');
+        });
+        layui.use('upload', function () {
+            var upload = layui.upload;
+            var uploadInst = upload.render({
+                elem: '#picturebt'
+                , url: '/ljsheng/uploadpicture?path=/uploadfiles/product/'
+                , size: 300
+                , before: function (obj) {
+                    $('#pictureText').html('<span style="color: #FF5722;">上传中...</span>');
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#picture').attr('src', result); //图片链接（base64）
+                    });
+                }
+                , done: function (res) {
+                    //如果上传失败
+                    if (res.code > 0) {
+                        return layer.msg('上传失败');
+                    }
+                    else {
+                        //上传成功
+                        $('#pictureText').html('<span style="color: #FF5722;">上传成功</span>');
+                        document.getElementsByName("picture")[0].value = res.data.title;
+                    }
+                }
+                , error: function () {
+                    //演示失败状态，并实现重传
+                    $('#pictureText').html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                    $('#pictureText').find('.demo-reload').on('click', function () {
+                        uploadInst.upload();
+                    });
+                }
+            });
+        });
+        layui.use('upload', function () {
+            var upload = layui.upload;
+            var uploadInst = upload.render({
+                elem: '#gdbt'
+                , url: '/ljsheng/uploadpicture?path=/uploadfiles/product/'
+                , size: 500
+                , before: function (obj) {
+                    $('#gdText').html('<span style="color: #FF5722;">上传中...</span>');
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        $('#gd').attr('src', result); //图片链接（base64）
+                    });
+                }
+                , done: function (res) {
+                    //如果上传失败
+                    if (res.code > 0) {
+                        return layer.msg('上传失败');
+                    }
+                    else {
+                        //上传成功
+                        $('#gdText').html('<span style="color: #FF5722;">上传成功</span>');
+                        document.getElementsByName("graphic_details")[0].value = res.data.title;
+                    }
+                }
+                , error: function () {
+                    //演示失败状态，并实现重传
+                    $('#gdText').html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                    $('#gdText').find('.demo-reload').on('click', function () {
+                        uploadInst.upload();
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

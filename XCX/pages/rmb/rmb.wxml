@@ -1,0 +1,18 @@
+<import src="../../template/loading.wxml" />
+<wxs src="../../util/formatTime.wxs" module="formatTime" />
+
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:100%;" bindscrolltolower="lower" lower-threshold="5">
+  <block wx:for="{{list}}" wx:key="*this">
+    <view class="li">
+      <view class="title">{{item.name==null?"多商品订单":item.name}}</view>
+      <view class="time">{{formatTime.dateFtt(item.add_time)}}</view>
+      <view class="pay tc">支付金额:</view>
+      <view class="rmb tc">
+        <image src="/image/rmb.png" /> {{item.price}}
+      </view>
+      <view class="line"></view>
+      <view class="title">订单号 {{item.order_no}}</view>
+    </view>
+  </block>
+</scroll-view>
+<template is="loading" data="{{searchLoadingText,searchLoading}}" />

@@ -1,0 +1,69 @@
+<!--要是够车内没有数据，就行显示没有数据-->
+<view class="cart" hidden="{{iscart}}">
+  <image src="/image/shops.png" />
+  <view>购物车什么都没有，赶快去购物吧</view>
+</view>
+<!--要是有数据，就显示数据-->
+<view class="cartList" hidden="{{!iscart}}">
+  <form bindsubmit="formBindsubmit">
+    <!--header-->
+    <view class="tophight"></view>
+    <view class='addr bgc'>
+      <view class='li'>
+        <text>姓名</text>
+        <input name="consignee" placeholder='输入姓名' value='{{real_name}}'></input>
+      </view>
+      <view class='line'></view>
+      <view class='li'>
+        <text>电话</text>
+        <input name="contact_number" placeholder='输入电话' type="number" value='{{contact_number}}'></input>
+      </view>
+      <view class='line'></view>
+      <view class='li'>
+        <text>地址</text>
+        <input name="address" placeholder='输入地址' value='{{address}}'></input>
+      </view>
+      <view class='li'>
+        <text>备注</text>
+        <input name="remarks" placeholder='备注'></input>
+      </view>
+    </view>
+    <!--list item-->
+    <block wx:for="{{cart}}">
+      <view class="goods">
+        <!--左侧图片-->
+        <view>
+          <navigator url="/pages/shoppage/shoppage?gid={{item.product_gid}}&tab={{tab}}">
+            <image src="{{item.imgUrl}}" class="good-img" />
+          </navigator>
+        </view>
+        <!--右侧说明部分-->
+        <view class="good-cont">
+          <!--文字说明-->
+          <view class="goods-navigator">
+            <text class="good-name">{{item.name}}</text>
+          </view>
+          <!--价钱和购物加减的父盒子-->
+          <view class="good-price">
+            <text class="price">￥{{item.price}}</text>
+            <view class="btn-box">
+              <view class="btn">
+                <button id="del{{index}}" type="default" size="mini" bindtap="delCount">-</button>
+                <input type="number" value="{{item.number}}" disabled='true' type='number' />
+                <button id="add{{index}}" type="default" size="mini" bindtap="addCount">+</button>
+              </view>
+              <image id="img{{index}}" src="/image/trash.png" bindtap="delGoods" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!--footer-->
+    <view class="total">
+      <view class="total_text">合计：
+        <text>￥{{total}}</text>
+      </view>
+      <button class="total_js" size="mini" formType="submit">去结算({{goodsCount}})</button>
+    </view>
+  </form>
+</view>

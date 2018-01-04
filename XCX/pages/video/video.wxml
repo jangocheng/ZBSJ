@@ -1,0 +1,18 @@
+<import src="../../template/search.wxml" />
+<import src="../../template/loading.wxml" />
+
+<template is="search" />
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:100%;" bindscrolltolower="lower" lower-threshold="5">
+  <block wx:for="{{list}}" wx:key="*this">
+    <view class="li">
+      <navigator url="/pages/videoplay/videoplay?gid={{item.gid}}">
+        <image src="{{url+item.picture}}" class="image" />
+        <view class="text">{{item.name}}</view>
+        <view class="liplay">
+          <image src="/image/playblack.png" class="playimage" />
+        </view>
+      </navigator>
+    </view>
+  </block>
+</scroll-view>
+<template is="loading" data="{{searchLoadingText: searchLoadingText,searchLoading: searchLoading}}" />

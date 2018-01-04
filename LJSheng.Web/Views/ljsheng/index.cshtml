@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/js/jquery.js"></script>
+    <link href="~/css/ljsheng/default.css" rel="stylesheet" />
+    <title>后台中心</title>
+    <style type="text/css">
+        .time {
+            padding-left: 20px;
+            margin: 0 15px;
+            font-size: 14px;
+            font-family: Arial;
+            margin-top: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #fff;
+        }
+    </style>
+    <script>
+        function kd()
+        {
+            $.ajax({
+                url: "/ljsheng/kd",
+                data: "",
+                type: "post",
+                cache: false,
+                timeout: 8000,
+                dataType: "json",
+                ContentType: "application/json; charset=utf-8",
+                error: function () { alert("请求超时"); },
+                beforeSend: function () { },
+                success: function (data) {
+                    alert(data.data);
+                },
+            });
+        }
+    </script>
+</head>
+<body>
+    <p class="time">
+        欢迎进入后台管理中心！今天是：<span id="localtime"></span>
+        <br /><br /><br />
+        <button class="layui-btn"  onclick="kd();">更新快递公司信息</button>
+    </p>
+    <script type="text/javascript">
+        function showLocale(objD) {
+            var dn, str;
+            var yy = objD.getFullYear();
+            var hh = objD.getHours();
+            var mm = objD.getMinutes();
+            var ss = objD.getSeconds();
+            str = objD.getFullYear() + "年" + (objD.getMonth() + 1) + "月" + objD.getDate() + "日";
+
+            if (hh < 10) hh = '0' + hh;
+            if (mm < 10) mm = '0' + mm;
+            if (ss < 10) ss = '0' + ss;
+            str += " " + hh + ":" + mm + ":" + ss;
+            return (str);
+        }
+        function tick() {
+            var today;
+            today = new Date();
+            document.getElementById("localtime").innerHTML = showLocale(today);
+            window.setTimeout("tick()", 1000);
+        }
+        tick();
+    </script>
+</body>
+</html>

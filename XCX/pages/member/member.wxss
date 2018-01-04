@@ -1,0 +1,84 @@
+/**index.wxss**/
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #d1e9e9;
+  padding-bottom: 20rpx;
+  padding-top: 20rpx;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.member {
+  width: 100%;
+}
+
+.userorder {
+  position: relative;
+  padding-left: 20rpx;
+  height: 500rpx;
+}
+
+.userorder .ac:active {
+  background-color: #eee;
+}
+
+.ac {
+  position: relative;
+  right: 10rpx;
+  width: 50rpx;
+  height: 39rpx;
+  background-size: 20rpx;
+}
+
+.arr {
+  float: right;
+  padding-right: 10rpx;
+  width: 50rpx;
+  height: 40rpx;
+  background-size: 20rpx;
+}
+
+.line {
+  padding: 0.07rem 0.12rem;
+  display: block;
+  height: 60rpx;
+  padding-top: 20rpx;
+}
+
+.txtorder {
+  position: relative;
+  top: -5rpx;
+  left: 20rpx;
+}
+
+.lxwm {
+  padding-top: 30rpx;
+  line-height: 50rpx;
+  color: #ddd;
+}
+
+.video
+{
+  color: blue;
+}
+.lxkf
+{
+  color: #fff;  
+  background: #ec5151;  
+  height: 30px;  
+  margin: 0;
+  margin-top: 30rpx;
+}

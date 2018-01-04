@@ -1,0 +1,8 @@
+var dateFtt = function (date) {
+  if (date != null) {
+    return date.replace('T', ' ').substring(0,16) 
+  }
+}
+module.exports = {
+  dateFtt: dateFtt
+};

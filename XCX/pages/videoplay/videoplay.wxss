@@ -1,0 +1,58 @@
+.play {
+  height: 40vh;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+}
+
+.body {
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+}
+
+.main {
+  box-sizing: border-box;
+  height: 60vh;
+  line-height: 2;
+  position: fixed;
+  bottom: 0;
+  color: #676767;
+}
+
+.fwl {
+  height: 50rpx;
+  float: right;
+  padding-right: 20rpx;
+  padding-top: 10rpx;
+  font-size: 28rpx;
+  color: #676767;
+}
+
+.fwl image {
+  height: 30rpx;
+  width: 30rpx;
+}
+
+.title {
+  color: black;
+  font-size: 38rpx;
+}
+
+.author {
+  font-size: 28rpx;
+  padding-top: 20rpx;
+}
+
+.addtime {
+  float: right;
+  padding-right: 20rpx;
+  font-size: 25rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  padding-top: 20rpx;
+  letter-spacing: 3rpx;
+  line-height: 50rpx;
+}

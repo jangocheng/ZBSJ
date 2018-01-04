@@ -1,0 +1,26 @@
+page
+{
+  padding: 20rpx 20rpx 20rpx 20rpx;
+}
+.title
+{
+  color: black;
+  font-size: 38rpx;
+}
+.subtitle
+{
+  padding-bottom: 50rpx;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  letter-spacing:3rpx;
+  text-indent:50rpx;
+}
+.time
+{
+  color: #B3B3B3;
+   padding: 50rpx 0rpx;
+}
+.author
+{
+  color: #007799;
+}

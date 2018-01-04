@@ -1,0 +1,34 @@
+/*列表*/
+
+.li {
+  float: left;
+  width: 33.33%;
+  height: auto;
+}
+
+.image {
+  width: 99.1%;
+  height: 330rpx;
+}
+
+.text {
+  font-size: 28rpx;
+  padding-left: 20rpx;
+  margin-bottom: 20rpx;
+}
+.playimage {
+  width: 100%;
+  height: 100%;
+}
+.liplay {
+  position: absolute;
+  margin-top: -250rpx;
+  margin-left: 100rpx;
+  width: 50rpx;
+  height: 50rpx;
+  background-color: black;
+  border-radius: 328rpx 328rpx 328rpx 328rpx;
+  filter: alpha(Opacity=80);
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+}

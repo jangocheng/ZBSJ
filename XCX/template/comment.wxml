@@ -1,0 +1,41 @@
+<import src="loading.wxml" />
+<wxs src="../util/formatTime.wxs" module="formatTime" />
+
+<template name="comment">
+  <view class="comment">
+    <view class="ctitle strong">
+      <image src="/image/wechat.png"></image> 评论
+      <view class="cdp greentag" bindtap='pl'>我要点评</view>
+    </view>
+    <block wx:for="{{list}}" wx:key="*this">
+      <view class='cli'>
+        <view class='cleft'>
+          <image class="userinfo-avatar" src="{{item.mp}}"></image>
+        </view>
+        <view class='cright'>
+          <view>
+            <text class="cmember">{{item.nickname}}</text>
+            <text class="ctime">{{formatTime.dateFtt(item.add_time)}}</text>
+          </view>
+          <view class="ccontent">{{item.content}}</view>
+        </view>
+      </view>
+      <block wx:if="{{item.reply != null}}">
+        <view class='cli creply'>
+          <view class='cleft'>
+            <image class="userinfo-avatar" src="/image/user.png"></image>
+          </view>
+          <view class='cright'>
+            <view>
+              <text class="cmember">系统回复</text>
+              <text class="ctime">{{formatTime.dateFtt(item.reply_time)}}</text>
+            </view>
+            <view class="ccontent">{{item.reply}}</view>
+          </view>
+        </view>
+      </block>
+      <view class='line'></view>
+    </block>
+  </view>
+  <template is="loading" data="{{searchLoadingText,searchLoading}}" />
+</template>

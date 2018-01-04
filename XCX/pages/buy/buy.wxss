@@ -1,0 +1,154 @@
+page {  
+  background: #f2ebe3;  
+}  
+.top {
+  width: 100%;
+}
+.bgc
+{
+  background-color: #fff;
+}
+.addr {
+  height: 350rpx;
+  text-indent: 20rpx;
+}
+.li
+{
+  height: 50rpx;
+  padding-top: 30rpx;
+}
+.li text {
+  float: left;
+  width: 20%;
+}
+
+.li input {
+  float: left;
+  width: 80%;
+  margin-left: -50rpx;
+}
+.cart {  
+  padding: 100px 0 0 0;  
+  display: flex;  
+  justify-content: center;  
+  flex-direction: column;  
+  align-items: center;  
+  color: #999;  
+}  
+  
+.cart image {  
+  width: 66px;  
+  height: 66px;  
+  margin-bottom: 20px;  
+}  
+  
+.tophight {  
+  font-size: 28rpx;  
+  color: #db2929;  
+  padding: 10rpx;  
+}  
+  
+.goods {  
+  background: #fff;  
+  border-top: 1px solid #ddd;  
+  margin-bottom: 10px;  
+  padding: 10px 10px 0 10px;  
+  display: flex;  
+}  
+  
+.goods image {  
+  width: 80px;  
+  height: 80px;  
+  border: 1px solid #ddd;  
+}  
+  
+.goods .good-cont {  
+  display: flex;  
+  flex: 1;  
+  flex-direction: column;  
+  color: #555;  
+  font-size: 14px;  
+  padding: 5px;  
+  height: 100px;  
+}  
+  
+.goods .good-cont .goods-navigator {  
+  display: flex;  
+  flex: 2;  
+}  
+  
+.goods .good-cont .good-price {  
+  display: flex;  
+  flex-direction: column;  
+  flex: 3;  
+}  
+  
+.goods .good-cont .good-price .price {  
+  font-size: 16px;  
+  color: #ec5151;  
+}  
+  
+.goods .good-cont .good-price .btn-box {  
+  display: flex;  
+  flex-direction: row;  
+  justify-content: space-between;  
+}  
+  
+.goods .good-cont .good-price .btn-box image {  
+  width: 23px;  
+  height: 23px;  
+  border: 0;  
+  margin: 0;  
+}  
+  
+.goods .good-cont .good-price .btn {  
+  display: flex;  
+  flex-direction: row;  
+}  
+  
+.goods .good-cont .good-price .btn input {  
+  margin: 0;  
+  width: 40px;  
+  text-align: center;  
+  border: 1px solid #eee;  
+  font-size: 16px;  
+  height: 28px;  
+}  
+  
+.goods .good-cont .good-price .btn button {  
+  margin: 0;  
+}  
+  
+.total {  
+  height: 40px;  
+  display: flex;  
+  flex-direction: row;  
+  justify-content: space-between;  
+  padding: 0 20px;  
+}  
+  
+.total .total_text {  
+  display: flex;  
+  color: #777;  
+}  
+  
+.total .total_text text {  
+  color: #ec5151;  
+}  
+  
+.total .total_js {  
+  color: #fff;  
+  background: #ec5151;  
+  height: 30px;  
+  margin: 0;  
+}  
+.bottom {
+  height: 100rpx;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 999;
+  color: #fff !important;
+  border-color: #ea644a !important;
+  background-color: #fff !important;
+}

@@ -1,0 +1,196 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>订单管理</title>
+    <link href="~/plugins/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body style="margin-left:10px;margin-top:10px;">
+    <div id="ss" class="layui-form-item">
+        <div class="layui-inline">
+            <div class="layui-input-inline" style="width: 30px;">
+                <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">&#xe615;</i>
+            </div>
+            <div class="layui-input-inline" style="width: 150px;">
+                <select name="pay_type">
+                    <option value="0" selected="">= 支付类型 =</option>
+                    @foreach (string name in Enum.GetNames(typeof(LJShengHelper.PayType)))
+                    {
+                        LJShengHelper.PayType type = (LJShengHelper.PayType)Enum.Parse(typeof(LJShengHelper.PayType), name, true);
+                        <option value="@((int)type)">@name</option>
+                    }
+                </select>
+                <select name="pay_status">
+                    <option value="0" selected="">= 支付状态 =</option>
+                    @foreach (string name in Enum.GetNames(typeof(LJShengHelper.PayStatus)))
+                    {
+                        LJShengHelper.PayStatus type = (LJShengHelper.PayStatus)Enum.Parse(typeof(LJShengHelper.PayStatus), name, true);
+                        if (@name == "支付成功")
+                        {
+                            <option value="@((int)type)" selected="selected">@name</option>
+                        }
+                        else
+                        {
+                            <option value="@((int)type)">@name</option>
+                        }
+                    }
+                </select>
+                <select name="express_status">
+                    <option value="0" selected="">= 货物状态 =</option>
+                    <option value="1" @(Request.QueryString["express_status"] == "1" ? "selected=''":"")>发货中</option>
+                    <option value="2">快递中</option>
+                    <option value="3">已签收</option>
+                    <option value="4">退回</option>
+                </select>
+            </div>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" placeholder="会员" name="nickname" class="layui-input" />
+            </div>
+            <div class="layui-input-inline @(Request.QueryString["ltype"]=="1"?"layui-hide":"")" style="width: 150px;">
+                <input type="text" placeholder="产品名称" name="name" class="layui-input" />
+            </div>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" placeholder="系统订单号" name="order_no" class="layui-input" />
+            </div>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" placeholder="网银订单号" name="trade_no" class="layui-input" />
+            </div>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" placeholder="开始时间" name="stime" autocomplete="off" lay-verify="date" class="layui-input" onfocus="layui.laydate.render({ elem: this,type: 'datetime',show: true });">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" placeholder="结束时间" name="etime" autocomplete="off" lay-verify="date" class="layui-input" onfocus="layui.laydate.render({ elem: this,type: 'datetime',show: true });">
+            </div>
+            <div class="layui-input-inline">
+                <input type="text" value="@Request.QueryString["member_gid"]" name="member_gid" class="layui-hide" />
+                <input type="text" value="@Request.QueryString["product_gid"]" name="product_gid" class="layui-hide" />
+                <input type="text" value="@Request.QueryString["ltype"]" name="ltype" class="layui-hide" />
+                <button onclick="GetList(1,10);" class="layui-btn">给偶搜</button>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form">
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>序</th>
+                    <th>系统/网银订单号</th>
+                    <th>下单/支付时间</th>
+                    <th>会员帐号</th>
+                    <th>产品名称</th>
+                    <th>原价</th>
+                    <th>支付</th>
+                    <th>份</th>
+                    <th>支付方式</th>
+                    <th>支付状态</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <script id="tpl" type="text/html">
+                    {{each list as item index}}
+                    <tr id="{{item.gid}}" style="background-color:{{index%2 ==0 ?"#FFFFF0":""}};">
+                        <td>{{index+1}}</td>
+                        <td>{{item.order_no}}<br />{{item.trade_no}}</td>
+                        <td>{{item.add_time}}<br />{{item.pay_time}}</td>
+                        <td>{{item.nickname}}</td>
+                        <td>
+                            {{if item.name=="多商品订单"}}
+                            <button class="layui-btn" onclick="Show('{{item.order_no}}','gid={{item.gid}}','order_detailslist');">查看商品</button>
+                            {{else}}
+                            {{item.name}}
+                            {{/if}}
+                        </td>
+                        <td>{{item.total_price}}</td>
+                        <td>{{item.price}}</td>
+                        <td>{{item.number}}</td>
+                        <td>
+                            {{if item.pay_type=="1"}}
+                            支付宝
+                            {{else if item.pay_type=="2"}}
+                            微信
+                            {{else}}
+                            线下汇款
+                            {{/if}}
+                            <br />
+                            {{if item.express_status=="1"}}
+                            发货中
+                            {{else if item.express_status=="2"}}
+                            快递中
+                            {{else if item.express_status=="3"}}
+                            已签收
+                            {{else}}
+                            退回
+                            {{/if}}
+                        </td>
+                        <td id="{{item.order_no}}">
+                            {{if item.pay_status=="1"}}
+                            <span style="color:green;">支付成功</span>
+                            {{else if item.pay_status=="2"}}
+                            <span style="color:red;">未支付</span>
+                            <br />
+                            <button class="layui-btn" onclick="Pay('{{item.order_no}}');">自动对账</button>
+                            {{else if item.pay_status=="3"}}
+                            已退款
+                            {{else if item.pay_status=="5"}}
+                            金额不对
+                            {{else}}
+                            交易关闭
+                            {{/if}}
+                        </td>
+                        <td>
+                            <div class="layui-btn-group">
+                                <button class="layui-btn layui-btn-mini" onclick="Show('{{item.order_no}}','gid={{item.gid}}','');">编辑</button>
+                                <button class="layui-btn layui-btn-mini" onclick="Show('{{item.express}}-{{item.express_number}}','express={{item.express}}&express_number={{item.express_number}}','express');">物流</button>
+                                <button class="layui-btn layui-btn-mini layui-hide" onclick="Delete('{{item.gid}}');">删除</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </script>
+            </tbody>
+        </table>
+    </div>
+    <div id="page"></div>
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/plugins/layui/layui.js"></script>
+    <script src="~/js/template-web.js"></script>
+    <script src="~/js/list.js"></script>
+    <script>
+        function Pay(order_no) {
+            layer.confirm('你确定要执行此操作吗？只有在用户支付成功后系统没有处理才能执行本操作!', {
+                btn: ['确定', '取消'] //按钮
+            }, function () {
+                $.ajax({
+                    url: "/ajax/api.ashx?ff=payOrder",
+                    data: "{order_no:\"" + order_no + "\"}",
+                    type: "post",
+                    cache: false,
+                    timeout: 8000,
+                    dataType: "json",
+                    ContentType: "application/json; charset=utf-8",
+                    error: function () { layer.msg("请求超时"); },
+                    beforeSend: function () { },
+                    success: function (data) {
+                        if (data.result == 200) {
+                            $("#" + order_no).html('<span style="color:green;">对账成功</span>');
+                            layer.msg(data.data, { icon: 1 });
+                        }
+                        else {
+                            layer.msg(data.data);
+                        }
+                    },
+                });
+            });
+        }
+    </script>
+</body>
+</html>

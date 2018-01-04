@@ -1,0 +1,51 @@
+<view class="container">
+  <view class="userinfo">
+    <button type="primary" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录真柏世界 </button>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <image src="/image/out.png" class="ac" bindtap='out'></image>
+    </block>
+  </view>
+  <view class="member {{hasUserInfo?'show':'hide'}}">
+    <view class="userorder" bindtap="bindViewTap">
+      <view class="line tc video">
+        {{video}}
+      </view>
+      <navigator url="/pages/rmb/rmb">
+        <view class="line">
+          <image src="/image/rmb.png" class="ac"></image>
+          <text class="txtorder">消费记录</text>
+          <image src="/image/right.png" class="arr"></image>
+        </view>
+      </navigator>
+      <navigator url="/pages/zhenbo/zhenbo">
+        <view class="line">
+          <image src="/image/zhenbo.png" class="ac"></image>
+          <text class="txtorder">我的真柏</text>
+          <image src="/image/right.png" class="arr"></image>
+        </view>
+      </navigator>
+      <navigator url="/pages/shipin/shipin">
+        <view class="line">
+          <image src="/image/play.png" class="ac"></image>
+          <text class="txtorder">我的视频</text>
+          <image src="/image/right.png" class="arr"></image>
+        </view>
+      </navigator>
+      <navigator url="/pages/kecheng/kecheng">
+        <view class="line">
+          <image src="/image/kc.png" class="ac"></image>
+          <text class="txtorder">我的课程</text>
+          <image src="/image/right.png" class="arr"></image>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  <view class="tc">
+    <button open-type="contact" class="lxkf" size="mini">联系客服</button>
+  </view>
+  <view class="lxwm tc">
+    <view>福清玉山文创版权所有 盗版必究</view>
+  </view>
+</view>

@@ -1,0 +1,92 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>报表</title>
+    <link href="~/plugins/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body style="margin-left:10px;margin-top:10px;">
+    <div id="ss" class="layui-form-item">
+        <div class="layui-inline">
+            <div class="layui-input-inline" style="width: 30px;">
+                <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">&#xe615;</i>
+            </div>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" placeholder="开始时间" name="stime" autocomplete="off" lay-verify="date" class="layui-input" onfocus="layui.laydate.render({ elem: this,type: 'datetime',show: true });">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" placeholder="结束时间" name="etime" autocomplete="off" lay-verify="date" class="layui-input" onfocus="layui.laydate.render({ elem: this,type: 'datetime',show: true });">
+            </div>
+            <div class="layui-input-inline">
+                <a onclick="javascript: ss();" class="layui-btn">给偶搜</a>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form">
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>全部订单</th>
+                    <th>付费视频</th>
+                    <th>课程预定</th>
+                    <th>真柏产品</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>全部(金额)</td>
+                    <td>@ViewBag.order</td>
+                    <td>@ViewBag.product</td>
+                    <td>@ViewBag.sp</td>
+                    <td>@ViewBag.kc</td>
+                </tr>
+                <tr>
+                    <td>按时间查询</td>
+                    <td>@ViewBag.ordertime</td>
+                    <td>@ViewBag.producttime</td>
+                    <td>@ViewBag.sptime</td>
+                    <td>@ViewBag.kctime</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="~/plugins/layui/layui.js"></script>
+    <script src="~/js/list.js"></script>
+    <script>
+        function ss() {
+            var parames = new Array();
+            var div = document.getElementById("ss");
+            var input = div.getElementsByTagName("input");
+            var select = div.getElementsByTagName("select");
+            for (var i = 0; i < input.length; i++) {
+                parames.push({ name: input[i].name, value: input[i].value });
+            }
+            for (var i = 0; i < select.length; i++) {
+                parames.push({ name: select[i].name, value: select[i].value });
+            }
+            var temp_form = document.createElement("form");
+            temp_form.action = window.location.href;
+            temp_form.target = "_self";
+            temp_form.method = "post";
+            temp_form.style.display = "none";
+            for (var item in parames) {
+                var opt = document.createElement("textarea");
+                opt.name = parames[item].name;
+                opt.value = parames[item].value;
+                temp_form.appendChild(opt);
+            }
+            document.body.appendChild(temp_form);
+            temp_form.submit();
+            return false;
+        }
+    </script>
+</body>
+</html>

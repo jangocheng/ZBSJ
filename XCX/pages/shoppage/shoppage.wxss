@@ -1,0 +1,116 @@
+.top {
+  width: 100%;
+  margin-bottom: 100rpx;
+}
+
+.bgc {
+  background-color: white;
+}
+
+.body {
+  line-height: 60rpx;
+  color: #676767;
+  text-indent: 20rpx;
+  background-color: #ebebeb;
+}
+
+.main {
+  height: 100vh;
+}
+
+.rmb {
+  color: coral;
+  margin-top: -10rpx;
+}
+
+.rmbimage {
+  height: 30rpx;
+  width: 30rpx;
+}
+
+.title {
+  color: black;
+  font-size: 28rpx;
+  margin-top: 2rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}
+
+.bottom {
+  height: 100rpx;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 999;
+  color: #fff !important;
+  border-color: #ea644a !important;
+  background-color: #fff !important;
+}
+
+.kefu {
+  width: 20%;
+  float: left;
+}
+
+.kfimage {
+  height: 60%;
+  width: 100%;
+  padding-top: 10rpx;
+}
+
+.bname {
+  height: 40%;
+  width: 100%;
+  color: #888;
+  margin-top: -20rpx;
+  font-size: 28rpx;
+}
+
+.gwc {
+  width: 20%;
+  float: left;
+}
+
+.gwcimage {
+  height: 60%;
+  width: 100%;
+  padding-top: 5rpx;
+}
+
+.gwc image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.che {
+  width: 32%;
+  float: left;
+}
+
+.che button {
+  background-color: #ffb701;
+}
+
+.buy {
+  width: 28%;
+  float: left;
+}
+
+.kcbuy {
+  width: 80%;
+  float: left;
+}
+
+.kcbuy button,.buy button {
+  background-color: #ff6a01;
+}
+
+.bottom button {
+  color: #fff;
+  border-radius: 0px;
+  height: 100%;
+  padding-top: 10rpx;
+}

@@ -1,0 +1,20 @@
+<import src="../../template/loading.wxml" />
+<wxs src="../../util/formatTime.wxs" module="formatTime" />
+
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:100%;" bindscrolltolower="lower" lower-threshold="5">
+  <block wx:for="{{list}}" wx:key="*this">
+    <view class="li">
+      <navigator url="/pages/shoppage/shoppage?gid={{item.product_gid}}&tab=0">
+        <view class="title">{{item.name}}</view>
+        <view class="time">时间:{{formatTime.dateFtt(item.add_time)}}</view>
+        <view class="rmb tc">
+          培训老师:{{item.extend1}}
+        </view>
+        <view class="pay">地址:{{item.extend3}}</view>
+        <view class="line"></view>
+        <view class="title">查看课程详情</view>
+      </navigator>
+    </view>
+  </block>
+</scroll-view>
+<template is="loading" data="{{searchLoadingText,searchLoading}}" />

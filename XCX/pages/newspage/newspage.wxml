@@ -1,0 +1,8 @@
+<wxs src="../../util/formatTime.wxs" module="formatTime" />
+
+<view class="title">{{searchGid.name}}</view>
+<view class="time">{{formatTime.dateFtt(searchGid.add_time)}}
+  <text class="author">{{searchGid.author}}</text>
+</view>
+<view class="subtitle">{{searchGid.subtitle}}</view>
+<image src="{{url}}{{searchGid.graphic_details}}" class='autoimage'/>

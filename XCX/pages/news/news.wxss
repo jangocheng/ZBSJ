@@ -1,0 +1,32 @@
+page
+{
+  background-color: #EBEBEB;
+}
+.li
+{
+ margin: 0 auto;
+ margin-top: 30rpx;
+ padding: 20rpx;
+  background-color: white;
+  height: auto;
+  width: 90%;
+}
+.title
+{
+  color: black;
+  font-size: 38rpx;
+}
+.subtitle
+{
+  color: #B3B3B3;
+  padding-bottom: 50rpx;
+}
+.time
+{
+  color: #B3B3B3;
+   padding: 20rpx 0rpx;
+}
+.li image
+{
+  width: 100%;
+}

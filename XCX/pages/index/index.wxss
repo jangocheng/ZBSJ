@@ -1,0 +1,104 @@
+.body {
+  width: 100%;
+  height: 100%;
+}
+
+.xcp {
+  width: 100%;
+  height: 50%;
+}
+
+.xcpimage {
+  width: 100%;
+  height: 530rpx;
+}
+
+.title {
+  margin: 0 auto;
+  width: 90%;
+  height: auto;
+  font-size: 28rpx;
+  background-color: #fff;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  filter: alpha(Opacity=80);
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+  margin-top: 100rpx;
+  padding: 10rpx 10rpx 10rpx 10rpx;
+}
+
+.play {
+  margin-top: -50%;
+  margin-left: 46%;
+  width: 80rpx;
+  height: 80rpx;
+  background-color: black;
+  border-radius: 328rpx 328rpx 328rpx 328rpx;
+  filter: alpha(Opacity=80);
+  -moz-opacity: 0.9;
+  opacity: 0.9;
+}
+
+.playimage {
+  width: 100%;
+  height: 100%;
+}
+
+.liplay {
+  position: absolute;
+  margin-top: -250rpx;
+  margin-left: 100rpx;
+  width: 50rpx;
+  height: 50rpx;
+  background-color: black;
+  border-radius: 328rpx 328rpx 328rpx 328rpx;
+  filter: alpha(Opacity=80);
+  -moz-opacity: 0.8;
+  opacity: 0.8;
+}
+
+.sp {
+  width: 100%;
+  height: 50%;
+  margin-top: -50rpx;
+}
+
+.sptitle {
+  width: 100%;
+  height: 15%;
+  background-color: #fafafa;
+  padding-top: 60rpx;
+}
+
+.name {
+  float: left;
+  padding-left: 20rpx;
+}
+
+.more {
+  float: right;
+  padding-right: 20rpx;
+  color: #676767;
+}
+
+.list {
+  width: 100%;
+  height: 100%;
+}
+
+.li {
+  float: left;
+  width: 33.33%;
+  height: auto;
+}
+
+.image {
+  width: 99.1%;
+  height: 330rpx;
+}
+
+.text {
+  font-size: 28rpx;
+  padding-left: 20rpx;
+  margin-bottom: 20rpx;
+}

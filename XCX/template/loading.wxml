@@ -1,0 +1,3 @@
+<template name="loading">
+  <view class="loading tc" hidden="{{!searchLoading}}">{{searchLoadingText}}</view>
+</template>

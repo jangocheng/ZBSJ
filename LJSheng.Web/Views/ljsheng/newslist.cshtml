@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>资讯管理</title>
+    <link href="~/plugins/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body style="margin-left:10px;margin-top:10px;">
+    <div id="ss" class="layui-form-item">
+        <div class="layui-inline">
+            <div class="layui-input-inline" style="width: 30px;">
+                <i class="layui-icon" style="font-size: 30px; color: #1E9FFF;">&#xe615;</i>
+            </div>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" placeholder="标题" name="title" class="layui-input" />
+            </div>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" placeholder="开始时间" name="stime" autocomplete="off" lay-verify="date" class="layui-input" onfocus="layui.laydate.render({ elem: this,type: 'datetime',show: true });">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline" style="width: 150px;">
+                <input type="text" placeholder="结束时间" name="etime" autocomplete="off" lay-verify="date" class="layui-input" onfocus="layui.laydate.render({ elem: this,type: 'datetime',show: true });">
+            </div>
+            <div class="layui-input-inline">
+                <input type="text" name="ltype" value="@Request.QueryString["ltype"]" hidden>
+                <button onclick="GetList(1,10);" class="layui-btn">给偶搜</button>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form">
+        <table class="layui-table">
+            <thead>
+                <tr>
+                    <th>序</th>
+                    <th>标题</th>
+                    <th>图片</th>
+                    <th>图文详情</th>
+                    <th>排序</th>
+                    <th>是否显示</th>
+                    <th>添加时间</th>
+                    <th>管理操作</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <script id="tpl" type="text/html">
+                    {{each list as item index}}
+                    <tr id="{{item.gid}}" style="background-color:{{index%2 ==0 ?"#FFFFF0":""}};">
+                        <td>{{index+1}}</td>
+                        <td>{{item.title}}</td>
+                        <td onclick="showimg('{{item.gid}}');">
+                            <img style="width:80px;height:50px;" onerror="this.src = '/images/nopic.png'" src="@(LJShengHelper.News){{item.picture}}" />
+                        </td>
+                        <td onclick="showimg('{{item.gid}}');">
+                            <img style="width:80px;height:50px;" onerror="this.src = '/images/nopic.png'" src="@(LJShengHelper.News){{item.graphic_details}}" />
+                        </td>
+                        <td>{{item.sort}}</td>
+                        <td>
+                            {{if item.show=="1"}}
+                            <span style="color:green;">显示</span>
+                            {{else if item.show=="2"}}
+                            <span style="color:red;">不显示</span>
+                            {{else if item.show=="3"}}
+                            首页显示
+                            {{else}}
+                            未知
+                            {{/if}}
+                        </td>
+                        <td>{{item.add_time}}</td>
+                        <td>
+                            <div class="layui-btn-group">
+                                <button class="layui-btn layui-btn-mini" onclick="Show('{{item.title}}','gid={{item.gid}}','');">编辑</button>
+                                <button class="layui-btn layui-btn-mini" onclick="Delete('{{item.gid}}');">删除</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </script>
+            </tbody>
+        </table>
+    </div>
+    <div id="page"></div>
+    <script src="~/js/jquery.js"></script>
+    <script src="~/plugins/layui/layui.js"></script>
+    <script src="~/js/template-web.js"></script>
+    <script src="~/js/list.js"></script>
+</body>
+</html>

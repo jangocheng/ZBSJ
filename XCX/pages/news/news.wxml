@@ -1,0 +1,19 @@
+<import src="../../template/search.wxml" />
+<import src="../../template/loading.wxml" />
+<wxs src="../../util/formatTime.wxs" module="formatTime" />
+
+<template is="search" />
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:100%;" bindscrolltolower="lower" lower-threshold="5">
+  <block wx:for="{{list}}" wx:key="*this">
+    <view class="li">
+      <navigator url="/pages/newspage/newspage?gid={{item.gid}}">
+        <view class="title strong">{{item.title}}</view>
+        <view class="time">{{formatTime.dateFtt(item.add_time)}}</view>
+        <image src="{{url}}{{item.picture}}" />
+        <view class="subtitle">{{item.subtitle}}</view>
+        <view class="title">查看全文</view>
+      </navigator>
+    </view>
+  </block>
+</scroll-view>
+<template is="loading" data="{{searchLoadingText: searchLoadingText,searchLoading: searchLoading}}" />

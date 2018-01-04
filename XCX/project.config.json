@@ -1,0 +1,100 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true
+	},
+	"compileType": "weapp",
+	"libVersion": "1.5.4",
+	"appid": "wxb95209e7af00dc95",
+	"projectname": "%E7%9C%9F%E6%9F%8F%E4%B8%96%E7%95%8C",
+	"condition": {
+		"weapp": {
+			"current": -1,
+			"list": [
+				{
+					"id": 1,
+					"name": "shop",
+					"pathName": "pages/shop/shop",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "news",
+					"pathName": "pages/news/news",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "shoppage",
+					"pathName": "pages/shoppage/shoppage",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "buy",
+					"pathName": "pages/buy/buy",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "videoplay",
+					"pathName": "pages/videoplay/videoplay",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "member",
+					"pathName": "pages/member/member",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "rmb",
+					"pathName": "pages/rmb/rmb",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "kecheng",
+					"pathName": "pages/kecheng/kecheng",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "shipin",
+					"pathName": "pages/shipin/shipin",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "zhenbo",
+					"pathName": "pages/zhenbo/zhenbo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "ljsheng",
+					"pathName": "pages/ljsheng/ljsheng",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "video",
+					"pathName": "pages/video/video",
+					"query": ""
+				}
+			]
+		},
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		}
+	}
+}

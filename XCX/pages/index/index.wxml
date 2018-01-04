@@ -1,0 +1,36 @@
+<view class="body">
+  <view class="xcp">
+    <navigator url="/pages/videoplay/videoplay?gid={{xcp.gid}}" hover-class="navigator-hover">
+      <image src="{{url}}{{xcp.picture}}" class="xcpimage" />
+      <view class="play">
+        <image src="/image/playblack.png" class="playimage" />
+      </view>
+      <view class="title">
+        {{xcp.subtitle}}
+      </view>
+    </navigator>
+  </view>
+  <view class="sp">
+    <view class="sptitle">
+      <view class="name strong">视频</view>
+      <view class="more">
+        <navigator url="/pages/video/video" open-type="switchTab" hover-class="other-navigator-hover">查看更多 ></navigator>
+      </view>
+    </view>
+    <view class="list">
+      <scroll-view scroll-y="true" class="scoll-h">
+        <block wx:for="{{video}}" wx:key="*this">
+          <view class="li">
+            <navigator url="/pages/videoplay/videoplay?gid={{item.gid}}">
+              <image src="{{url+item.picture}}" class="image" />
+              <view class="text">{{item.name}}</view>
+              <view class="liplay">
+                <image src="/image/playblack.png" class="playimage" />
+              </view>
+            </navigator>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>

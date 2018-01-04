@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>管理员操作</title>
+    <link href="~/plugins/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body style="margin-left:10px;margin-top:10px;">
+    @using (Html.BeginForm("ljshengau", "ljsheng", new { gid = Request.QueryString["gid"] }, FormMethod.Post, new { @class = "layui-form-pane layui-form", enctype = "multipart/form-data" }))
+    {
+        <div class="layui-form-item">
+            <label class="layui-form-label">登录帐号</label>
+            <div class="layui-input-inline">
+                <input type="text" name="account" lay-verify="account" placeholder="请输入" autocomplete="off" class="layui-input" value="@ViewBag.account" @(string.IsNullOrEmpty(Request.QueryString["gid"]) ? "" : "disabled=\"\"")>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input type="password" name="pwd" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input" value="@ViewBag.pwd">
+            </div>
+            <div class="layui-form-mid layui-word-aux">密码6-20位</div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">真实姓名</label>
+            <div class="layui-input-inline">
+                <input type="text" name="real_name" placeholder="请输入" autocomplete="off" class="layui-input" value="@ViewBag.real_name">
+            </div>
+        </div>
+        <div class="layui-form-item" pane="">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+                <input type="radio" name="gender" value="男" title="男" @(ViewBag.gender != "女" ? "checked=\"\"" : "")>
+                <input type="radio" name="gender" value="女" title="女" @(ViewBag.gender == "女" ? "checked=\"\"" : "")>
+            </div>
+        </div>
+        <div class="layui-form-item">
+                <button class="layui-btn" lay-submit="">提交</button>
+                <div class="layui-form-mid layui-word-aux" style="color:#FF5722;">@ViewBag.msg</div>
+            </div>
+    }
+    <script src="~/plugins/layui/layui.js"></script>
+    <script>
+        layui.use(['form'], function () {
+            var form = layui.form();
+
+            //自定义验证规则
+            form.verify({
+                account: function (value) {
+                    if (value.length < 3) {
+                        return '用户名至少得3个字符啊';
+                    }
+                }
+                , pass: [/(.+){6,20}$/, '密码必须6到20位']
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<import src="../../template/loading.wxml" />
+<wxs src="../../util/formatTime.wxs" module="formatTime" />
+
+<scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:100%;" bindscrolltolower="lower" lower-threshold="5">
+  <block wx:for="{{list}}" wx:key="*this">
+    <view class="li">
+      <view class="title">订单号:{{item.order_no}}</view>
+      <view class="time">{{formatTime.dateFtt(item.add_time)}}</view>
+      <view class="pay tc">支付金额:</view>
+      <view class="rmb tc">
+        <image src="/image/rmb.png" /> {{item.price}}
+      </view>
+      <view class="time-horizontal">
+        <view class='hli'>
+          <view class='hb {{item.express_status==1?"green":""}}'></view>已支付</view>
+        <view class='hli'>
+          <view class='hb {{item.express_status==2?"green":""}}'></view>出库中</view>
+        <view class='hli' bindtap='showKD' data-express="{{item.express}}" data-express_number="{{item.express_number}}">
+          <view class='hb {{item.express_status==3?"green":""}}'></view>
+          <image src="/image/kd.png" />
+        </view>
+        <view class='hli'>
+          <view class='hb {{item.express_status==4?"green":""}}'></view>签收</view>
+      </view>
+      <view class="addr">
+        <view>联系方式:{{item.contact_number}} 联 系 人:{{item.consignee}}</view>
+        <view>收货地址:{{item.address}}</view>
+      </view>
+      
+      <view class="more" bindtap='showOrder' data-buy="{{item.gid}}">查看商品清单 >>></view>
+    </view>
+  </block>
+</scroll-view>
+<template is="loading" data="{{searchLoadingText,searchLoading}}" />
+<view class='info {{showOrder}}' bindtap='hide'>
+  <view class='order'>
+    订单的商品清单如下:
+    <image class='x' src='/image/x.png'></image>
+  </view>
+  <view class='line'></view>
+  <view class='list'>
+    <block wx:for="{{odList}}" wx:key="*this">
+      <view>{{item.name}} X {{item.number}} 单价 {{item.price}}</view>
+    </block>
+  </view>
+</view>
+
+<view class='info {{showKD}}' bindtap='hide'>
+  <view class='order'>
+    物流信息:
+    <image class='x' src='/image/x.png'></image>
+  </view>
+  <view class='line'></view>
+  <view class='list time-vertical'>
+    <block wx:for="{{kdList}}" wx:key="*this">
+      <view class='vli'>
+        <view class='vb'></view>
+        <view class='vs'>{{item.time}}</view>
+        <view class='va'>{{item.status}}</view>
+      </view>
+    </block>
+  </view>
+</view>
